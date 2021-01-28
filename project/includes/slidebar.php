@@ -1,31 +1,9 @@
  <div class="col-md-4">
 
-             <?php
-                 if(isset($_POST['submit'])){
-                    $search =  $_POST['search'];       
-                  
-                  $query = "SELECT * FROM posts where post_tags like '%$search%'";
-                  $search_query = mysqli_query($connection,$query);
-                  if(!$search_query){
-                     die("ERROR query" . mysqli_error($connection));
-                  }
-                  
-                  $count = mysqli_num_rows($search_query); 
-                     if($count ==0){
-
-                        echo "<h1>No RESULT </h1>";
-                     }else{
-                         echo "<h1>some result </h1>";
-                     }
-
-                 }
-             
-             ?>
-
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
-                    <form action="" method="post">
+                    <form action="search.php" method="post">
                     <div class="input-group">
                         <input name="search" type="text" class="form-control">
                         <span class="input-group-btn">
@@ -40,42 +18,32 @@
 
                 <!-- Blog Categories Well -->
                 <div class="well">
+                   <?php
+
+                    $query = "SELECT * FROM categories";
+                    $select_all_categoies_query = mysqli_query($connection,$query);
+                  
+                     ?>
                     <h4>Blog Categories</h4>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
+                              <?php
+                    while ($row = mysqli_fetch_assoc($select_all_categoies_query)) {
+
+                           $cat_title = $row['cat_title'];
+                            echo "<li><a href='#'>{$cat_title}</a></li>";
+                
+                        }    
+                              ?>
                             </ul>
                         </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
+                       
                     </div>
                     <!-- /.row -->
                 </div>
 
                 <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-                </div>
+                 <?php include('Widget.php') ?>
 
             </div>
