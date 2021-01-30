@@ -23,11 +23,11 @@
                         $source ='';
                       }
                       switch ($source) {
-                          case '34':
-                              echo "NICE 34";
+                          case 'add_posts':
+                            include "includes/add_posts.php";
                               break;
-                          case '100':
-                              echo "NICE 100";
+                          case 'edit_posts':
+                               include "includes/edit_posts.php";
                               break;
                               case '200':
                               echo "NICE 200";
