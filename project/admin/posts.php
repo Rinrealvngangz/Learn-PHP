@@ -26,7 +26,7 @@
                           case 'add_posts':
                             include "includes/add_posts.php";
                               break;
-                          case 'edit_posts':
+                          case 'edit_post':
                                include "includes/edit_posts.php";
                               break;
                               case '200':
